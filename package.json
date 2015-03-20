@@ -1,0 +1,29 @@
+{
+  "name": "filelister",
+  "version": "1.0.0",
+  "description": "list files(recursively) in a directory and output as json/array. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xinghul/filelister.git"
+  },
+  "author": "Levi Lu <xinghu1989@gmail.com> (http://levi-lu.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xinghul/filelister/issues"
+  },
+  "homepage": "https://github.com/xinghul/filelister",
+  "devDependencies": {
+    "mocha": "^2.2.1",
+    "should": "^5.2.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "should": "^5.2.0"
+  }
+}
