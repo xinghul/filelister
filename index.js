@@ -6,20 +6,20 @@
 
     function files() {}
 
-    files.prototype.listFilesArray = function(dir, callback) {
-        function listFileSync(dir) {
+    files.prototype.listAsArray = function(dir, callback) {
+        function list(dir) {
             var stats = fs.lstatSync(dir);
             if (!stats.isDirectory()) {
                 return [];
             }
             return fs.readdirSync(dir).reduce(function (fileArr, curr) {
                 var currPath = path.join(dir, curr)
-                ,   stat = fs.lstatSync(currPath);
+                ,   stat     = fs.lstatSync(currPath);
 
                 if (stat.isFile()) {
                     fileArr.push(currPath);
                 } else if (stat.isDirectory()) {
-                    listFileSync(currPath).map(function (path) {
+                    list(currPath).map(function (path) {
                         fileArr.push(path);
                     });
                 }
@@ -27,8 +27,38 @@
             }, []);
         }
 
-        var arr = listFileSync(this.getAbsolutePath(dir));
-        callback(null, arr);
+        return callback(null, list(this.getAbsolutePath(dir)));
+    };
+
+    files.prototype.listAsArraySync = function(dir) {
+        function list(dir) {
+            var stats = fs.lstatSync(dir);
+            if (!stats.isDirectory()) {
+                return [];
+            }
+            return fs.readdirSync(dir).reduce(function (fileArr, curr) {
+                var currPath = path.join(dir, curr)
+                ,   stat     = fs.lstatSync(currPath);
+
+                if (stat.isFile()) {
+                    fileArr.push(currPath);
+                } else if (stat.isDirectory()) {
+                    list(currPath).map(function (path) {
+                        fileArr.push(path);
+                    });
+                }
+                return fileArr;
+            }, []);
+        }
+
+        return list(this.getAbsolutePath(dir));
+    };
+
+    files.prototype.listFilesJson = function(dir, callback) {
+        function list(dir) {
+
+        }
+        // var json = list
     };
 
     files.prototype.getAbsolutePath = function(name) {
