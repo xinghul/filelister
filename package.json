@@ -1,6 +1,6 @@
 {
   "name": "filelister",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "list files(recursively) in a directory and output as json/array. ",
   "main": "index.js",
   "scripts": {
